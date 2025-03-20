@@ -40,8 +40,8 @@ const Dashboard = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen p-8">
-      <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">Dashboard</h1>
-      <p className="text-lg text-center text-gray-600 mb-8">Welcome to the Dashboard!</p>
+      <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">Sign in</h1>
+      <p className="text-lg text-center text-gray-600 mb-8">Welcome to the Signin!</p>
       <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">User Information</h2>
         <form onSubmit={handleSubmit}>
