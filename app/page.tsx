@@ -1,8 +1,7 @@
 "use client"; 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link"; // 导入Link组件，用于页面跳转
-
+import Link from "next/link"; 
 
 interface Resident {
   name: string;
@@ -125,7 +124,8 @@ const BuildingManagement = () => {
         </div>
       )}
 
-      <div className="mt-8 text-center">
+      {/* 底部链接 */}
+      <div className="text-center mt-8">
         <Link href="/dashboard" className="text-blue-600 mx-4">Dashboard</Link>
         <Link href="/notifications" className="text-blue-600 mx-4">Notifications</Link>
         <Link href="/settings" className="text-blue-600 mx-4">Settings</Link>
