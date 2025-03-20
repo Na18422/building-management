@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link"; // 导入Link组件，用于页面跳转
 
+
 interface Resident {
   name: string;
   phone: string;
