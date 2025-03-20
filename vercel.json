@@ -1,5 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "npm run custom-build", 
+   "buildCommand": "next build"，
   "regions": ["syd1"]
 }
