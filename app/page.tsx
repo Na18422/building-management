@@ -1,6 +1,7 @@
 "use client"; 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link"; // 导入Link组件，用于页面跳转
 
 interface Resident {
   name: string;
@@ -48,7 +49,6 @@ const BuildingManagement = () => {
   const [message, setMessage] = useState<string>('');
   const [showPopup, setShowPopup] = useState<boolean>(false);
 
- 
   const handleCallMaintenance = async (roomNumber: number, residentName: string, issue: string) => {
     try {
       const res = await fetch(`/api/callMaintenanceWorker?roomNumber=${roomNumber}&residentName=${residentName}&issue=${issue}`);
@@ -61,7 +61,6 @@ const BuildingManagement = () => {
     }
   };
 
-  
   const closePopup = () => {
     setShowPopup(false);
     setMessage(''); 
@@ -108,7 +107,6 @@ const BuildingManagement = () => {
         ))}
       </div>
 
-      {/* 弹出窗口 */}
       {showPopup && (
         <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
@@ -125,6 +123,13 @@ const BuildingManagement = () => {
           </div>
         </div>
       )}
+
+      <div className="mt-8 text-center">
+        <Link href="/dashboard" className="text-blue-600 mx-4">Dashboard</Link>
+        <Link href="/notifications" className="text-blue-600 mx-4">Notifications</Link>
+        <Link href="/settings" className="text-blue-600 mx-4">Settings</Link>
+        <Link href="/about" className="text-blue-600 mx-4">About</Link>
+      </div>
     </div>
   );
 };
