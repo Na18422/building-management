@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Dashboard = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,21 @@ const Dashboard = () => {
   });
 
   const [submittedData, setSubmittedData] = useState<any>(null);
+  const [fetchedData, setFetchedData] = useState<any>(null);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/getUserData");
+        const data = await response.json();
+        setFetchedData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -21,18 +36,17 @@ const Dashboard = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 使用 fetch 发送 POST 请求
     try {
       const response = await fetch("/api/submitUserData", {
-        method: "POST", // 使用 POST 请求
+        method: "POST",
         headers: {
-          "Content-Type": "application/json", // 数据格式是 JSON
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData), // 将表单数据转为 JSON 格式发送
+        body: JSON.stringify(formData), 
       });
 
-      const result = await response.json(); // 处理响应
-      setSubmittedData(result); // 将服务器返回的数据存储在状态中
+      const result = await response.json();
+      setSubmittedData(result); 
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -40,8 +54,21 @@ const Dashboard = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen p-8">
-      <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">Sign in</h1>
-      <p className="text-lg text-center text-gray-600 mb-8">Welcome to the Signin!</p>
+      <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">Dashboard</h1>
+      <p className="text-lg text-center text-gray-600 mb-8">Welcome to the Dashboard!</p>
+
+      <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg mb-8">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Fetched Data</h2>
+        {fetchedData ? (
+          <div>
+            <p className="text-lg text-gray-600">Name: {fetchedData.name}</p>
+            <p className="text-lg text-gray-600">Email: {fetchedData.email}</p>
+          </div>
+        ) : (
+          <p className="text-lg text-gray-600">No data found.</p>
+        )}
+      </div>
+
       <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">User Information</h2>
         <form onSubmit={handleSubmit}>
