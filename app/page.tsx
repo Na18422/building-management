@@ -1,3 +1,5 @@
+"use client"; // 添加这一行来标记这是一个客户端组件
+
 import React, { useState } from "react";
 import Image from "next/image";
 
