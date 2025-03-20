@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const buildingData = [
   {
@@ -32,6 +33,15 @@ const BuildingManagement = () => {
     <div className="bg-gray-50 min-h-screen p-8">
       <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">Building Management</h1>
 
+      <div className="flex justify-center mb-8">
+        <Image
+          src="/pic.png"
+          alt="Building Image"
+          width={400}
+          height={300}
+        />
+      </div>
+
       <div className="space-y-8">
         {buildingData.map((floor, floorIndex) => (
           <div key={floorIndex} className="bg-white shadow-lg rounded-lg p-6">
@@ -61,3 +71,4 @@ const BuildingManagement = () => {
 };
 
 export default BuildingManagement;
+
