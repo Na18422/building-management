@@ -1,8 +1,8 @@
-"use client"; 
+"use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 
-// 房间数据
 const buildingData = [
   {
     floor: 1,
@@ -31,36 +31,25 @@ const buildingData = [
 ];
 
 const BuildingManagement = () => {
-  const [message, setMessage] = useState<string>(''); 
+  const [message, setMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
-  const handlePayWaterBill = async (roomNumber: number, residentName: string, amount: string) => {
-    try {
-      const res = await fetch(`/api/payWaterBill?roomNumber=${roomNumber}&residentName=${residentName}&amount=${amount}`);
-      const data = await res.json();
-      setMessage(data.message);
-    } catch (error) {
-      setMessage('Error processing water bill payment');
-    }
-  };
-
-  const handlePayElectricityBill = async (roomNumber: number, residentName: string, amount: string) => {
-    try {
-      const res = await fetch(`/api/payElectricityBill?roomNumber=${roomNumber}&residentName=${residentName}&amount=${amount}`);
-      const data = await res.json();
-      setMessage(data.message);
-    } catch (error) {
-      setMessage('Error processing electricity bill payment');
-    }
-  };
-
-  const handleCallMaintenance = async (roomNumber: number, residentName: string, issue: string) => {
+  const handleCallMaintenance = async (roomNumber, residentName, issue) => {
     try {
       const res = await fetch(`/api/callMaintenanceWorker?roomNumber=${roomNumber}&residentName=${residentName}&issue=${issue}`);
       const data = await res.json();
       setMessage(data.message);
+      setShowPopup(true); 
     } catch (error) {
       setMessage('Error calling maintenance worker');
+      setShowPopup(true);  
     }
+  };
+
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setMessage(''); 
   };
 
   return (
@@ -91,18 +80,6 @@ const BuildingManagement = () => {
                   </div>
                   <div>
                     <button 
-                      onClick={() => handlePayWaterBill(room.roomNumber, room.resident.name, '50')}
-                      className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition duration-300"
-                    >
-                      Pay Water Bill
-                    </button>
-                    <button 
-                      onClick={() => handlePayElectricityBill(room.roomNumber, room.resident.name, '75')}
-                      className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition duration-300 mt-2"
-                    >
-                      Pay Electricity Bill
-                    </button>
-                    <button 
                       onClick={() => handleCallMaintenance(room.roomNumber, room.resident.name, 'Leaky Pipe')}
                       className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700 transition duration-300 mt-2"
                     >
@@ -116,10 +93,25 @@ const BuildingManagement = () => {
         ))}
       </div>
 
-      {message && <div className="mt-4 text-center text-gray-600">{message}</div>}
+    
+      {showPopup && (
+        <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <h2 className="text-xl font-semibold text-center mb-4">Success</h2>
+            <p className="text-center text-gray-600">{message}</p>
+            <div className="mt-4 text-center">
+              <button 
+                onClick={closePopup}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition duration-300"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default BuildingManagement;
-
