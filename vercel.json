@@ -5,6 +5,7 @@
     {
       "path": "/api/welcome",
       "schedule": "0 0 * * *"  
+    }
   ],
   "regions": ["syd1"]
 }
