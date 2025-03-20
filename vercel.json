@@ -6,23 +6,11 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/.*",
-      "dest": "/api/index.js"
-    }
-  ],
-  "env": {
-    "DATABASE_URL": "your-database-url",
-    "API_KEY": "your-api-key"
-  },
+  "regions": ["syd1"],
   "cron": [
     {
-      "path": "/api/clean-up",
-      "schedule": "0 0 * * *"
+      "path": "/api/clean-up",  
+      "schedule": "0 0 * * *"  
     }
   ],
-  "regions": ["syd1"], 
-  "buildCommand": "npm run build",
-  "outputDirectory": "build"
-}
+  "buildCommand": "npm run build"  
