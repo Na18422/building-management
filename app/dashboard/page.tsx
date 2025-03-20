@@ -18,9 +18,24 @@ const Dashboard = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmittedData(formData);
+
+    // 使用 fetch 发送 POST 请求
+    try {
+      const response = await fetch("/api/submitUserData", {
+        method: "POST", // 使用 POST 请求
+        headers: {
+          "Content-Type": "application/json", // 数据格式是 JSON
+        },
+        body: JSON.stringify(formData), // 将表单数据转为 JSON 格式发送
+      });
+
+      const result = await response.json(); // 处理响应
+      setSubmittedData(result); // 将服务器返回的数据存储在状态中
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   return (
