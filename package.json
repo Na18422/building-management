@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint"，
+    "custom-build": "echo 'Running custom build commands...'"
   },
   "dependencies": {
     "react": "^19.0.0",
