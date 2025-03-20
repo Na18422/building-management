@@ -1,4 +1,10 @@
 {
   "version": 2,
-  "regions": ["syd1"]
+  "regions": ["syd1"]，
+   "cron": [
+    {
+      "path": "/pages/api/welcome",  
+      "schedule": "0 0 * * *"  
+    }
+  ]
 }
