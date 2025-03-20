@@ -126,7 +126,7 @@ const BuildingManagement = () => {
 
       {/* 底部链接 */}
       <div className="text-center mt-8">
-        <Link href="/signin" className="text-blue-600 mx-4">Dashboard</Link>
+        <Link href="/dashboard" className="text-blue-600 mx-4">Signin</Link>
         <Link href="/notifications" className="text-blue-600 mx-4">Notifications</Link>
         <Link href="/settings" className="text-blue-600 mx-4">Settings</Link>
         <Link href="/about" className="text-blue-600 mx-4">About</Link>
