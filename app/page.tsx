@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 const buildingData = [
@@ -29,6 +29,38 @@ const buildingData = [
 ];
 
 const BuildingManagement = () => {
+  const [message, setMessage] = useState('');
+
+  const handlePayWaterBill = async (roomNumber, residentName, amount) => {
+    try {
+      const res = await fetch(`/api/payWaterBill?roomNumber=${roomNumber}&residentName=${residentName}&amount=${amount}`);
+      const data = await res.json();
+      setMessage(data.message);
+    } catch (error) {
+      setMessage('Error processing water bill payment');
+    }
+  };
+
+  const handlePayElectricityBill = async (roomNumber, residentName, amount) => {
+    try {
+      const res = await fetch(`/api/payElectricityBill?roomNumber=${roomNumber}&residentName=${residentName}&amount=${amount}`);
+      const data = await res.json();
+      setMessage(data.message);
+    } catch (error) {
+      setMessage('Error processing electricity bill payment');
+    }
+  };
+
+  const handleCallMaintenance = async (roomNumber, residentName, issue) => {
+    try {
+      const res = await fetch(`/api/callMaintenanceWorker?roomNumber=${roomNumber}&residentName=${residentName}&issue=${issue}`);
+      const data = await res.json();
+      setMessage(data.message);
+    } catch (error) {
+      setMessage('Error calling maintenance worker');
+    }
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen p-8">
       <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">Building Management</h1>
@@ -56,8 +88,23 @@ const BuildingManagement = () => {
                     <p className="text-sm text-gray-600">Phone: {room.resident.phone}</p>
                   </div>
                   <div>
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition duration-300">
-                      Contact
+                    <button 
+                      onClick={() => handlePayWaterBill(room.roomNumber, room.resident.name, '50')}
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition duration-300"
+                    >
+                      Pay Water Bill
+                    </button>
+                    <button 
+                      onClick={() => handlePayElectricityBill(room.roomNumber, room.resident.name, '75')}
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition duration-300 mt-2"
+                    >
+                      Pay Electricity Bill
+                    </button>
+                    <button 
+                      onClick={() => handleCallMaintenance(room.roomNumber, room.resident.name, 'Leaky Pipe')}
+                      className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700 transition duration-300 mt-2"
+                    >
+                      Call Maintenance
                     </button>
                   </div>
                 </div>
@@ -66,9 +113,10 @@ const BuildingManagement = () => {
           </div>
         ))}
       </div>
+
+      {message && <div className="mt-4 text-center text-gray-600">{message}</div>}
     </div>
   );
 };
 
 export default BuildingManagement;
-
