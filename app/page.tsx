@@ -1,8 +1,8 @@
-"use client"; // 添加这一行来标记这是一个客户端组件
-
+"use client"; 
 import React, { useState } from "react";
 import Image from "next/image";
 
+// 房间数据
 const buildingData = [
   {
     floor: 1,
@@ -31,9 +31,9 @@ const buildingData = [
 ];
 
 const BuildingManagement = () => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState<string>(''); 
 
-  const handlePayWaterBill = async (roomNumber, residentName, amount) => {
+  const handlePayWaterBill = async (roomNumber: number, residentName: string, amount: string) => {
     try {
       const res = await fetch(`/api/payWaterBill?roomNumber=${roomNumber}&residentName=${residentName}&amount=${amount}`);
       const data = await res.json();
@@ -43,7 +43,7 @@ const BuildingManagement = () => {
     }
   };
 
-  const handlePayElectricityBill = async (roomNumber, residentName, amount) => {
+  const handlePayElectricityBill = async (roomNumber: number, residentName: string, amount: string) => {
     try {
       const res = await fetch(`/api/payElectricityBill?roomNumber=${roomNumber}&residentName=${residentName}&amount=${amount}`);
       const data = await res.json();
@@ -53,7 +53,7 @@ const BuildingManagement = () => {
     }
   };
 
-  const handleCallMaintenance = async (roomNumber, residentName, issue) => {
+  const handleCallMaintenance = async (roomNumber: number, residentName: string, issue: string) => {
     try {
       const res = await fetch(`/api/callMaintenanceWorker?roomNumber=${roomNumber}&residentName=${residentName}&issue=${issue}`);
       const data = await res.json();
@@ -122,3 +122,4 @@ const BuildingManagement = () => {
 };
 
 export default BuildingManagement;
+
