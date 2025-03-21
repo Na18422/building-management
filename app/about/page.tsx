@@ -12,7 +12,7 @@ const Home: React.FC = () => {
       </button>
       
       <a href="/page" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
-          Back->
+          Back To Home
       </a>
     </div>
   );
