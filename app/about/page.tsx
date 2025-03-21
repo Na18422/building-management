@@ -1,12 +1,21 @@
-import React from "react";
+import React from 'react';
 
-const About = () => {
+const Home: React.FC = () => {
   return (
-    <div className="bg-gray-50 min-h-screen p-8">
-      <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">About</h1>
-      <p className="text-lg text-center text-gray-600">Learn more about our building management system.</p>
+    <div style={{ textAlign: 'center' }}>
+      <h1 style={{ fontSize: '40px' }}>BUILDING MANAGEMENT</h1>
+      <h2 style={{ fontSize: '40px' }}>AboutE</h2>
+      <br /><br />
+
+      <button onClick={handleClick} style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}>
+        Get More Information About Building
+      </button>
+      
+      <a href="/page" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
+          Back->
+      </a>
     </div>
   );
 };
 
-export default About;
+export default about;
