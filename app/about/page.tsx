@@ -10,8 +10,9 @@ const About: React.FC = () => {
       <button  style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}>
         Get More Information About Building
       </button>
-      
-      <a href="/page" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
+
+      <br /><br />
+      <a href="https://building-management-l77j.vercel.app/" rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
           Back To Home
       </a>
     </div>
