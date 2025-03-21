@@ -7,7 +7,7 @@ const Home: React.FC = () => {
       <h2 style={{ fontSize: '40px' }}>HOME PAGE</h2>
       <img src="pic.png" alt="Building Image" width={500} height={300} style={{ display: 'block', margin: '0 auto' }} />
       <br /><br />
-      <a href="/about" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
+      <a href="/about"  rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
           click me to about
       </a>
     </div>
