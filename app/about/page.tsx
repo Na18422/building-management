@@ -7,7 +7,7 @@ const Home: React.FC = () => {
       <h2 style={{ fontSize: '40px' }}>AboutE</h2>
       <br /><br />
 
-      <button onClick={handleClick} style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}>
+      <button  style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}>
         Get More Information About Building
       </button>
       
