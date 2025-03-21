@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Home: React.FC = () => {
+const About: React.FC = () => {
   return (
     <div style={{ textAlign: 'center' }}>
       <h1 style={{ fontSize: '40px' }}>BUILDING MANAGEMENT</h1>
@@ -18,4 +18,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default about;
+export default About;
