@@ -1,4 +1,4 @@
-async function getBuildingAddress() {
+export async function getBuildingAddress() {
   const response = await fetch('https://building.com/api/building-address', {
     method: 'GET',
   });
