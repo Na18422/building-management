@@ -4,16 +4,44 @@ import React, { useState } from 'react';
 const LogIn: React.FC = () => {
   const [roomNumber, setRoomNumber] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log('Room number:', roomNumber);
-    console.log('Password:', password);
+    setLoading(true);
+    setError(null);
+
+    const loginData = {
+      roomNumber: roomNumber,
+      password: password
+    };
+
+    try {
+      const response = await fetch('/api/login', {  
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),  
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error || 'Login failed');
+      }
+    } catch (error) {
+      setError("Failed to send data to server");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1 style={{ fontSize: '80px', backgroundColor: '#ADD8E6', color: 'white'}}>BUILDING MANAGEMENT</h1>
+      <h1 style={{ fontSize: '80px', backgroundColor: '#ADD8E6', color: 'white' }}>BUILDING MANAGEMENT</h1>
       <br /><br />
       <h2 style={{ fontSize: '40px' }}>LogIn</h2>
       <br /><br />
@@ -41,8 +69,15 @@ const LogIn: React.FC = () => {
           style={{ padding: '10px', fontSize: '18px' }}
         /><br /><br />
         
-        <input type="submit" value="LogIn" style={{ padding: '10px 20px', fontSize: '18px', cursor: 'pointer' }} />
+        <input 
+          type="submit" 
+          value={loading ? 'Logging In...' : 'LogIn'} 
+          style={{ padding: '10px 20px', fontSize: '18px', cursor: 'pointer' }} 
+          disabled={loading}
+        />
       </form>
+
+      {error && <p style={{ color: 'red' }}>{error}</p>} 
 
       <br /><br />
 
@@ -63,3 +98,4 @@ const LogIn: React.FC = () => {
 };
 
 export default LogIn;
+
