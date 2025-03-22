@@ -10,6 +10,9 @@ const Home: React.FC = () => {
       <a href="/about"  rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
           click me to about
       </a>
+      <a href="/LogIn"  rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
+          click me to about
+      </a>
     </div>
   );
 };
