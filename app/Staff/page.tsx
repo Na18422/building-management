@@ -32,22 +32,22 @@ const Staff: React.FC = () => {
           </tr>
           <tr>
             <td style={{ padding: '10px' }}>Committee Member</td>
-            <td style={{ padding: '10px' }}>Jane Smith</td>
+            <td style={{ padding: '10px' }}>Mr.守角冠军</td>
             <td style={{ padding: '10px' }}>
               <img
-                src="https://via.placeholder.com/100" // Replace with actual image URL
-                alt="Jane Smith"
+                src="staff2.png"
+                alt="守角冠军"
                 style={{ width: '100px', height: '100px', borderRadius: '50%' }}
               />
             </td>
           </tr>
           <tr>
             <td style={{ padding: '10px' }}>Committee Member</td>
-            <td style={{ padding: '10px' }}>Michael Johnson</td>
+            <td style={{ padding: '10px' }}>Mr.CCB</td>
             <td style={{ padding: '10px' }}>
               <img
-                src="https://via.placeholder.com/100" // Replace with actual image URL
-                alt="Michael Johnson"
+                src="staff3.png"
+                alt="CCB"
                 style={{ width: '100px', height: '100px', borderRadius: '50%' }}
               />
             </td>
