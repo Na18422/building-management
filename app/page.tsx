@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home: React.FC = () => {
   return (
-    <div style={{ textAlign: 'center', backgroundColor: 'blue', color: 'white' }}>
+    <div style={{ textAlign: 'center'  backgroundColor: 'blue' color: 'white' }}>
       <h1 style={{ fontSize: '80px' }}>BUILDING MANAGEMENT</h1>
     </div>
 
