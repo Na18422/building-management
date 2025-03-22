@@ -54,6 +54,10 @@ const Staff: React.FC = () => {
           </tr>
         </tbody>
       </table>
+
+      <a href="https://building-management-l77j.vercel.app/" rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
+          Back To Home
+      </a>
     </div>
   );
 };
