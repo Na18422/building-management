@@ -21,4 +21,4 @@ const LogIn: React.FC = () => {
   );
 };
 
-export default Login;
+export default LogIn;
