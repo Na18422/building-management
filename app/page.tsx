@@ -22,7 +22,7 @@ const Home: React.FC = () => {
       </a>
       <br />
        <a href="/Payment"  rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
-          Meet Our Staff
+           Payment
       </a>
     </div>
   );
