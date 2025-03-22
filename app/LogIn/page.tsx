@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+'use client';
 
 const LogIn: React.FC = () => {
   const [roomNumber, setRoomNumber] = useState<string>('');
