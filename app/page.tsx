@@ -16,8 +16,12 @@ const Home: React.FC = () => {
       <a href="/LogIn"  rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
           LogIn
       </a>
-      <br /><br />
+      <br />
        <a href="/Staff"  rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
+          Meet Our Staff
+      </a>
+      <br />
+       <a href="/Payment"  rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
           Meet Our Staff
       </a>
     </div>
