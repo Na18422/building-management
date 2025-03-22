@@ -21,11 +21,11 @@ const Staff: React.FC = () => {
         <tbody>
           <tr>
             <td style={{ padding: '10px' }}>Chairman</td>
-            <td style={{ padding: '10px' }}>John Doe</td>
+            <td style={{ padding: '10px' }}>Mr.Lightning McQueen</td>
             <td style={{ padding: '10px' }}>
               <img
-                src="https://via.placeholder.com/100" // Replace with actual image URL
-                alt="John Doe"
+                src="staff1.png" 
+                alt="Lightning McQueen"
                 style={{ width: '100px', height: '100px', borderRadius: '50%' }}
               />
             </td>
