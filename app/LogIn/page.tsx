@@ -7,11 +7,11 @@ const LogIn: React.FC = () => {
       <h2 style={{ fontSize: '40px' }}>LogIn</h2>
       <br /><br />
 
-{/*       <label>roomnumber：</label>
+      <label>roomnumber：</label>
       <input type="text" id="rmnb" name="roomnumber" required><br><br>
-       <label>password：</label>
+      <label>password：</label>
       <input type="password" id="psw" name="password" required><br><br>
-      <input type="submit" value="LogIn"> */}
+      <input type="submit" value="LogIn"> 
 
       <br /><br />
       <a href="https://building-management-l77j.vercel.app/" rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
