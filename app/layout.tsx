@@ -1,16 +1,24 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextRequest } from 'next/server';
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export const config = {
+  runtime: 'edge',
+};
+
+export default function handler(req: NextRequest) {
   const totalFloors = 5;
   const roomsPerFloor = 10;
   const totalRooms = totalFloors * roomsPerFloor;
 
-  res.status(200).json({
-    totalFloors,
-    roomsPerFloor,
-    totalRooms,
-  });
+  return new Response(
+    JSON.stringify({
+      totalFloors,
+      roomsPerFloor,
+      totalRooms,
+    }),
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
 }
