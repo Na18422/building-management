@@ -39,7 +39,7 @@ const Payment: React.FC = () => {
         onClick={() => handlePayment('u1', 'water')}
         style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}
       >
-        Check Water Payment (User u1)
+        Check Water Payment
       </button>
 
       <br /><br />
@@ -47,7 +47,7 @@ const Payment: React.FC = () => {
         onClick={() => handlePayment('u1', 'electricity')}
         style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}
       >
-        Check Electricity Payment (User u1)
+        Check Electricity Payment
       </button>
 
       <br /><br />
@@ -55,7 +55,7 @@ const Payment: React.FC = () => {
         onClick={() => handlePayment('u1', 'worker')}
         style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}
       >
-        Check Worker Payment (User u1)
+        Check Worker Payment
       </button>
 
       <br /><br />
