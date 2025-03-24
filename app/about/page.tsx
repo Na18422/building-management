@@ -13,13 +13,16 @@ const About: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setAddress(data.address); 
+        setAddress(data.address);
+        alert(`Building Address: ${data.address}`);
       } else {
         const errorData = await response.json();
-        setError(errorData.error); 
+        setError(errorData.error);
+        alert(`Error: ${errorData.error}`);
       }
     } catch (error) {
       setError("Failed to fetch building address");
+      alert("Failed to fetch building address");
     }
   };
 
@@ -50,15 +53,6 @@ const About: React.FC = () => {
 
       <br />
       <br />
-      {address && (
-        <p style={{ fontSize: "20px", color: "green" }}>
-          Building Address: {address}
-        </p>
-      )}
-      {error && <p style={{ color: "red" }}>Error: {error}</p>}
-
-      <br />
-      <br />
       <a
         href="https://building-management-l77j.vercel.app/"
         rel="noopener noreferrer"
@@ -76,4 +70,3 @@ const About: React.FC = () => {
 };
 
 export default About;
-
