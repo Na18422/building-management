@@ -1,10 +1,10 @@
-import type { NextRequest } from 'next/server';
+import { NextRequest } from 'next/server';
 
 export const config = {
-  runtime: 'edge',
+  runtime: 'edge', 
 };
 
-export default function handler(req: NextRequest) {
+export async function GET(req: NextRequest) {
   const totalFloors = 5;
   const roomsPerFloor = 10;
   const totalRooms = totalFloors * roomsPerFloor;
