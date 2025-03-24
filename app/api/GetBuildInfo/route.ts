@@ -1,19 +1,24 @@
-// app/api/GetBuildInfo/route.ts
-import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export async function GET() {
-  try {
-    const response = await fetch('https://building.com/api/building-address', {
-      method: 'GET',
-    });
+export const config = {
+  runtime: 'edge',
+};
 
-    if (response.ok) {
-      const data = await response.json();
-      return NextResponse.json({ address: data.address });
-    } else {
-      return NextResponse.json({ error: `HTTP error! status: ${response.status}` }, { status: 500 });
+export default function handler(req: NextRequest) {
+  const totalFloors = 5;
+  const roomsPerFloor = 10;
+  const totalRooms = totalFloors * roomsPerFloor;
+
+  return new Response(
+    JSON.stringify({
+      totalFloors,
+      roomsPerFloor,
+      totalRooms,
+    }),
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     }
-  } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch building address" }, { status: 500 });
-  }
+  );
 }
