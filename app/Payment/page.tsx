@@ -1,3 +1,4 @@
+// Example for calling the API from client-side
 "use client";
 import React, { useState } from 'react';
 
@@ -12,7 +13,13 @@ const Payment: React.FC = () => {
     setFeeAmount(null);
 
     try {
-      const response = await fetch(`/api/payment/${paymentType}`);
+      const response = await fetch(`/api/payment/${paymentType}`, {
+        method: 'GET',
+        headers: {
+          'user-id': 'u1', // 传递用户ID
+        },
+      });
+
       const data = await response.json();
       if (response.ok) {
         setFeeAmount(data.amount);
@@ -22,29 +29,6 @@ const Payment: React.FC = () => {
       }
     } catch (error) {
       setError('Failed to fetch payment amount');
-    }
-  };
-
-  const makePayment = async (paymentType: string) => {
-    if (!feeAmount) return;
-
-    setError(null);
-    setMessage(null);
-
-    try {
-      const response = await fetch(`/api/payment/${paymentType}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        setMessage(`Payment of $${feeAmount} for ${paymentType} successful`);
-      } else {
-        setError(data.error);
-      }
-    } catch (error) {
-      setError('Failed to process payment');
     }
   };
 
@@ -82,34 +66,6 @@ const Payment: React.FC = () => {
       {message && <p style={{ color: 'green' }}>{message}</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      {feeAmount && (
-        <div>
-          <br />
-          <button
-            onClick={() => makePayment('water')}
-            style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px' }}
-          >
-            Pay for Water ($${feeAmount})
-          </button>
-
-          <br /><br />
-          <button
-            onClick={() => makePayment('electricity')}
-            style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px' }}
-          >
-            Pay for Electricity ($${feeAmount})
-          </button>
-
-          <br /><br />
-          <button
-            onClick={() => makePayment('worker')}
-            style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px' }}
-          >
-            Pay for Worker ($${feeAmount})
-          </button>
-        </div>
-      )}
-
       <br /><br />
       <a href="https://building-management-l77j.vercel.app/" rel="noopener noreferrer" style={{ color: 'blue', fontSize: '24px', display: 'block', marginBottom: '10px' }}>
         Back To Home
@@ -119,3 +75,4 @@ const Payment: React.FC = () => {
 };
 
 export default Payment;
+
