@@ -1,4 +1,3 @@
-// Example for calling the API from client-side
 "use client";
 import React, { useState } from 'react';
 
@@ -7,17 +6,14 @@ const Payment: React.FC = () => {
   const [message, setMessage] = useState<string | null>(null);
   const [feeAmount, setFeeAmount] = useState<number | null>(null);
 
-  const handlePayment = async (paymentType: string) => {
+  const handlePayment = async (userId: string, paymentType: string) => {
     setError(null);
     setMessage(null);
     setFeeAmount(null);
 
     try {
-      const response = await fetch(`/api/payment/${paymentType}`, {
+      const response = await fetch(`/api/payment?id=${userId}&paymentType=${paymentType}`, {
         method: 'GET',
-        headers: {
-          'user-id': 'u1', // 传递用户ID
-        },
       });
 
       const data = await response.json();
@@ -40,26 +36,26 @@ const Payment: React.FC = () => {
       <br /><br />
 
       <button
-        onClick={() => handlePayment('water')}
+        onClick={() => handlePayment('u1', 'water')}
         style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}
       >
-        Check Water Payment
+        Check Water Payment (User u1)
       </button>
 
       <br /><br />
       <button
-        onClick={() => handlePayment('electricity')}
+        onClick={() => handlePayment('u1', 'electricity')}
         style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}
       >
-        Check Electricity Payment
+        Check Electricity Payment (User u1)
       </button>
 
       <br /><br />
       <button
-        onClick={() => handlePayment('worker')}
+        onClick={() => handlePayment('u1', 'worker')}
         style={{ padding: '10px 20px', fontSize: '16px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}
       >
-        Check Worker Payment
+        Check Worker Payment (User u1)
       </button>
 
       <br /><br />
@@ -75,4 +71,3 @@ const Payment: React.FC = () => {
 };
 
 export default Payment;
-
