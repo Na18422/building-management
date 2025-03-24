@@ -6,11 +6,13 @@ const LogIn: React.FC = () => {
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
     setError(null);
+    setSuccessMessage(null);
 
     const loginData = {
       roomNumber: roomNumber,
@@ -28,6 +30,7 @@ const LogIn: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
+        setSuccessMessage('Login successful!');
       } else {
         const errorData = await response.json();
         setError(errorData.error || 'Login failed');
@@ -79,6 +82,8 @@ const LogIn: React.FC = () => {
 
       {error && <p style={{ color: 'red' }}>{error}</p>} 
 
+      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>} 
+
       <br /><br />
 
       <a
@@ -98,4 +103,3 @@ const LogIn: React.FC = () => {
 };
 
 export default LogIn;
-
