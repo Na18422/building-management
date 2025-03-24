@@ -1,11 +1,10 @@
 // app/api/payment/route.ts
-
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const searchParams = new URLSearchParams(url.search);
 
   const userId = searchParams.get('id');
-  const paymentType = searchParams.get('paymentType');
+  const paymentType = searchParams.get('paymentType') as 'water' | 'electricity' | 'worker';
 
   const userPayments: { [key: string]: { water: number; electricity: number; worker: number } } = {
     u1: { water: 50, electricity: 100, worker: 200 },
