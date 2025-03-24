@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 
 const About: React.FC = () => {
-  const [address, setAddress] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleButtonClick = async () => {
@@ -13,16 +12,16 @@ const About: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setAddress(data.address);
-        alert(`Building Address: ${data.address}`);
+        const buildingInfo = `Total Floors: ${data.totalFloors}, Rooms per Floor: ${data.roomsPerFloor}, Total Rooms: ${data.totalRooms}`;
+        alert(buildingInfo); // Show building info in alert
       } else {
         const errorData = await response.json();
         setError(errorData.error);
-        alert(`Error: ${errorData.error}`);
+        alert(`Error: ${errorData.error}`); // Show API error in alert
       }
     } catch (error) {
-      setError("Failed to fetch building address");
-      alert("Failed to fetch building address");
+      setError("Failed to fetch building information");
+      alert("Failed to fetch building information"); // Show generic error in alert
     }
   };
 
