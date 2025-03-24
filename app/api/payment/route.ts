@@ -1,26 +1,35 @@
-// app/api/payment/[paymentType]/route.ts
-export async function GET(req: Request, { params }: { params: { paymentType: string } }) {
-  const { paymentType } = params;
+// app/api/payment/route.ts
 
-  const users = {
+export async function GET(req: Request) {
+  const url = new URL(req.url);
+  const searchParams = new URLSearchParams(url.search);
+
+  const userId = searchParams.get('id');  
+  const paymentType = searchParams.get('paymentType');  
+
+  const userPayments = {
     u1: { water: 50, electricity: 100, worker: 200 },
-    u2: { water: 60, electricity: 110, worker: 220 },
-    u3: { water: 55, electricity: 105, worker: 210 },
-    u4: { water: 70, electricity: 120, worker: 230 },
-    u5: { water: 65, electricity: 115, worker: 215 }
+    u2: { water: 60, electricity: 110, worker: 210 },
+    u3: { water: 70, electricity: 120, worker: 220 },
+    u4: { water: 80, electricity: 130, worker: 230 },
+    u5: { water: 90, electricity: 140, worker: 240 },
   };
 
-  const userId = req.headers.get('user-id'); // 假设你从请求头中获得用户ID
-
-  if (!userId || !users[userId]) {
-    return new Response(JSON.stringify({ error: 'User not found' }), { status: 404 });
+  if (!userId || !paymentType) {
+    return new Response(JSON.stringify({ error: 'User ID and payment type are required' }), { status: 400 });
   }
 
-  const paymentAmount = users[userId][paymentType];
+  const userPayment = userPayments[userId];
 
-  if (paymentAmount === undefined) {
+  if (!userPayment) {
+    return new Response(JSON.stringify({ error: 'Invalid user ID' }), { status: 400 });
+  }
+
+  const amount = userPayment[paymentType];
+
+  if (amount === undefined) {
     return new Response(JSON.stringify({ error: 'Invalid payment type' }), { status: 400 });
   }
 
-  return new Response(JSON.stringify({ amount: paymentAmount }), { status: 200 });
+  return new Response(JSON.stringify({ amount }), { status: 200 });
 }
