@@ -4,10 +4,10 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const searchParams = new URLSearchParams(url.search);
 
-  const userId = searchParams.get('id');  
-  const paymentType = searchParams.get('paymentType');  
+  const userId = searchParams.get('id');
+  const paymentType = searchParams.get('paymentType');
 
-  const userPayments = {
+  const userPayments: { [key: string]: { water: number; electricity: number; worker: number } } = {
     u1: { water: 50, electricity: 100, worker: 200 },
     u2: { water: 60, electricity: 110, worker: 210 },
     u3: { water: 70, electricity: 120, worker: 220 },
