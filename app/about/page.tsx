@@ -13,10 +13,10 @@ const About: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setAddress(data.address); // Assuming the API response contains 'address' field
+        setAddress(data.address); 
       } else {
         const errorData = await response.json();
-        setError(errorData.error); // Assuming the API response contains 'error' field
+        setError(errorData.error); 
       }
     } catch (error) {
       setError("Failed to fetch building address");
